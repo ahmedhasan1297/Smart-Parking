@@ -14,8 +14,61 @@
       /*background-color: green;*/
     }
   </style>
+  <script>
+    var app=angular.module("myapp",[]);
+
+    // app.service("showmenu",function($http){
+    //         this.show_menu=function(v){
+    //                  v.collect=""; 
+    //                  $http.get("test.php")
+    //                     .then(function(response) {
+    //                         v.collect = response.data;
+    //                         v.grab = chunk(v.collect, 4);
+    //                     });
+    //         }
+    // });
+
+
+    app.service("showmenu",function($http){
+      this.show_menu=function(v){
+            var request = $http({ 
+                     method: "post", 
+                     url: "new_item.php", 
+                     headers:{'content-type':'application/x-www-form-urlencoded'}, 
+                     transformRequest: function(obj) {
+                               // alert(groupid);
+                                                  var str = [];
+                                                  for(var p in obj)
+                                                  {
+                                                        //console.log(p);
+                                                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                                  }                                                      
+                                                 alert(str.join("&"));
+                                                    return str.join("&");
+                                            },
+                     data: { 
+                         item:v.item,
+                         price:v.price,
+                         category:v.category
+                     } 
+                 }); 
+                 request.success(
+                     function( data ) { 
+                         v.collect=data;
+                     } 
+                 ); 
+      }
+    });
+
+
+    app.controller("index",function($scope,$http,showmenu) {
+      $scope.show=function(){
+        showmenu.show_menu($scope);            
+      }
+    });
+  </script>
 </head>
-<body>
+<body ng-app="myapp" ng-controller="index" ng-init="show()">
 
 
 <nav class="navbar navbar-inverse">
