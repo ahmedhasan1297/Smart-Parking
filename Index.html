@@ -1,0 +1,363 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <style>
+     .Panel-class {
+      height: 150px;
+      /*background-color: green;*/
+    }
+  </style>
+  <script>
+    var app=angular.module("myapp",[]);
+
+    // app.service("showmenu",function($http){
+    //         this.show_menu=function(v){
+    //                  v.collect=""; 
+    //                  $http.get("test.php")
+    //                     .then(function(response) {
+    //                         v.collect = response.data;
+    //                         v.grab = chunk(v.collect, 4);
+    //                     });
+    //         }
+    // });
+
+
+    app.service("showmenu",function($http){
+      this.show_menu=function(v){
+            var request = $http({ 
+                     method: "post", 
+                     url: "new_item.php", 
+                     headers:{'content-type':'application/x-www-form-urlencoded'}, 
+                     transformRequest: function(obj) {
+                               // alert(groupid);
+                                                  var str = [];
+                                                  for(var p in obj)
+                                                  {
+                                                        //console.log(p);
+                                                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                                  }                                                      
+                                                 alert(str.join("&"));
+                                                    return str.join("&");
+                                            },
+                     data: { 
+                         item:v.item,
+                         price:v.price,
+                         category:v.category
+                     } 
+                 }); 
+                 request.success(
+                     function( data ) { 
+                         v.collect=data;
+                     } 
+                 ); 
+      }
+    });
+
+
+    app.controller("index",function($scope,$http,showmenu) {
+      $scope.show=function(){
+        showmenu.show_menu($scope);            
+      }
+    });
+  </script>
+</head>
+<body ng-app="myapp" ng-controller="index" ng-init="show()">
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Smart Parking</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Feedback</a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0001
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <span>adashj</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <button>Park</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0002
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0003
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0004
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0005
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0006
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0007
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-car fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0008
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-car fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0009
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-car fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0010
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-car fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0011
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-car fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0012
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-car fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0013
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0014
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0015
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-car fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0016
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-car fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0017
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-ambulance fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="panel panel-default">
+        <div class="panel-body Panel-class">
+          <div class="row">
+            <div class="col-sm-8">
+              P0018
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-ambulance fa-2x"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <script type="text/javascript" src="angular.js"></script>
+
+</body>
+</html>
