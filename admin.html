@@ -38,9 +38,9 @@
 	$scope.c_vehicle_no="";
 	$scope.c_phone_no="";
 	$scope.onpageload=function(){
-		alert("hai");
+		//alert("hai");
 		get_details.get_full_details($scope);
-		alert("returned");
+		//alert("returned");
 	}
 	$scope.deletecontact=function(emp_id){
 		delete_contact.delete_contact_details($scope,emp_id);
@@ -54,15 +54,15 @@
             }
 });
 app.service("get_details", function($http){
-	alert("enter the dragon");
+	//alert("enter the dragon");
 	this.get_full_details=function(v){
-		alert("My anaconda dance");
+		//alert("My anaconda dance");
 		v.collected_details="";
 		$http.get("contacts_dis.php").then(function(response){
 			
 			v.collected_details=response.data;
 //			alert(JSON.stringify(response));
-			alert(v.collected_details);
+			//alert(v.collected_details);
 		})
 	}  
 });
@@ -195,15 +195,9 @@ app.service("get_details", function($http){
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Inmar</a>
-      <ul class="nav navbar-nav navbar-right">
-      </ul>
+      <a class="navbar-brand" href="#">Smart Parking</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#" ng-click="onpageload()">Groups</a></li>
-        <li><a href="#" id="showContacts" ng-click="showContacts()">Contacts</a></li>      
-      </ul>
       <ul class="nav navbar-nav navbar-right">
             <li ><a href="#"><label>Welcome:<span class="glyphicon glyphicon-user"></span>
          <span>
