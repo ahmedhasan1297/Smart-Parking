@@ -1,344 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-  <style>
-     .Panel-class {
-      height: 150px;
-      /*background-color: green;*/
-    }
-  </style>
-      <script type="text/javascript">
-    	var xhttp;
-
-/*    	     (function(){
-            var c=document.cookie;
-            var mytest1=c.split(';');
-          // console.log(document.cookie);
-            var check=document.cookie;
-            var i=mytest1[0].search("=");
-            i=i+1;
-            if(mytest1[0].charAt(i)=="x")
-            {}
-            else
-            {
-              window.location.assign("login.html");
-            }
-     }());  */ 
-/*     function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "navbar") {
-    x.className += " responsive";
-  } else {
-    x.className = "navbar";
-  }
-}*/
-
- </script>
-
-</head>
-<body>
-
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    </div>
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Smart Parking</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-            <li ><a href="#"><label>Welcome:<span class="glyphicon glyphicon-user"></span>
-         <span>
-          <!-- <script type="text/javascript">
-            var c=document.cookie;
-            var mytest1=c.split(';');
-            var j=mytest1[1].search("=");
-            var k=mytest1[1].search("%");
-            var arr=mytest1[1].slice(j+1,k);
-            document.write(arr);
-          </script> -->
-         </span>
-        </label></a></li>
-        <li><a href="#" onclick="delcookie()"><span class="glyphicon glyphicon-log-out"></span> Signout</a></li>
-      </ul>
-    </div>      
-  </div>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0001
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-motorcycle fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0002
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-motorcycle fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0003
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-motorcycle fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0004
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-motorcycle fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0005
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-motorcycle fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0006
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-motorcycle fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en"><head>     
   
-  <div class="row">
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0007
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-car fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0008
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-car fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0009
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-car fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0010
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-car fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0011
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-car fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0012
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-car fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0013
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-motorcycle fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0014
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-motorcycle fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0015
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-car fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0016
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-car fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0017
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-ambulance fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0018
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-ambulance fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
+        <!-- TITLE OF SITE --> 
+        <title>Smart Park</title>
+  
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta name="description" content="StartUp Landing Page Template" />
+        <meta name="keywords" content="Treetoper, startup, landing page, gradient background, image background, video background, template, responsive, bootstrap" />
+        <meta name="developer" content="TemplateOcean">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-</body>
+    
+
+        <!-- GOOGLE FONTS -->
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Acme|Pacifico" rel="stylesheet">
+        <!-- BOOTSTRAP CSS -->
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+        <!-- Image Slider -->
+        <link rel="stylesheet" href="css/plagin-css/plagin.css">
+
+        <!-- FONT ICONS -->
+		<link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+        <!--   COUSTOM CSS link  -->
+        <link rel="stylesheet" href="css/style.css">
+        <!---HOVER EFFECTS---->
+         <link rel="stylesheet" href="css/hover.css" media="all">
+         <!--animate css-->
+         <link rel="stylesheet" href="css/animate.css">
+         <!---jquery -->
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <style>
+         .du-1 {
+    
+        -webkit-animation-delay:0.7s;
+        -moz-animation-delay: 0.2s;
+        -o-animation-delay: 0.2s;
+        -ms-animation-delay: 0.2s;
+}
+
+.du-2 {
+
+        -webkit-animation-delay: 1.4s;
+        -moz-animation-delay: 0.5s;
+        -o-animation-delay: 0.5s;
+        -ms-animation-delay: 0.5s;
+     }
+.du-3 {
+
+        -webkit-animation-delay: 1.8s;
+        -moz-animation-delay: 0.5s;
+        -o-animation-delay: 0.5s;
+        -ms-animation-delay: 0.5s;
+     }
+    </style>   
+    </head>
+
+    <body class="">
+
+        <!-- Start: Navbar Area
+        ============================= -->
+        <header id="header" class="okayNav-header navbar-fixed-top main-navbar-top">
+            <div class="container">
+                <div class="row">
+                    
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+
+                        <a class="okayNav-header__logo navbar-brand" href="#">
+                           
+                        </a>
+
+                    </div> <!-- End: .col-xs-3 -->
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-6">
+
+                        <nav role="navigation" class="okayNav pull-right" id="js-navbar-menu">
+                            <ul id="navbar-nav" class="navbar-nav">
+                               
+                                <li><a class="btn-nav hvr-underline-reveal" href="#" data-toggle="modal" data-target="#sign-up-form">Sign Up</a></li>
+                                <li><a class="btn-nav hvr-underline-reveal" href="#" data-toggle="modal" data-target="#login-form">Login</a></li>
+                            </ul>
+                        </nav>
+
+                    </div> <!-- End: .col-xs-9 -->
+                </div> <!-- End: .row -->
+            </div> <!-- End: .container -->
+        </header><!-- /header -->
+        <!-- End: Navbar Area
+        ============================= -->
+
+
+
+
+        <!-- Start: Sign Out Form
+        ================================== -->
+        <div id="sign-up-form" class="sign-form modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content p-t-30 p-b-30">
+                    
+                    <!-- Modal Close Button -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                    <form method="post" class="single-form" action="">
+
+                        <div class="col-xs-12 text-center">
+                            <h2 class="section-heading p-b-30">Sign Up</h2>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <!-- First Name -->
+                            <input name="text" class="contact-first-name form-control" type="text" placeholder="First Name*" required>
+                        </div>
+                        <div class="col-xs-12">
+                            <!-- Last Name -->
+                            <input name="text" class="contact-last-name form-control" type="text" placeholder="Last Name*" required>
+                        </div>
+                        <div class="col-xs-12">
+                            <!-- Email -->
+                            <input name="email" class="contact-email form-control" type="email" placeholder="Email*" required>
+                        </div>
+                        <div class="col-xs-12">
+                            <!-- Subject -->
+                            <input name="password" class="contact-password form-control" type="pass" placeholder="Password">
+                        </div>
+                        <div class="col-xs-12">
+                            <!-- Subject -->
+                            <input name="password" class="contact-cmp-password form-control" type="pass" placeholder="Confirm Password">
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="checkbox">
+                                <input type="checkbox" id="agreement">
+                                <label for="agreement">I agree to Your Terms of Service </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Subject Button -->
+                        <div class="btn-form text-center col-xs-12">
+                            <button class="btn btn-fill">Sign Up</button>
+                        </div>
+                    </form>
+
+                </div><!-- End: .modal-content -->
+            </div><!-- End: .modal-dialog -->
+        </div><!-- End: .modal -->
+        <!-- End: Sign Out Form
+        ================================== -->
+
+
+ <!-- Start: Sign Out Form
+        ================================== -->
+        <div id="login-form" class="sign-form modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content p-t-30 p-b-30">
+                    
+                    <!-- Modal Close Button -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                    <form method="post" class="single-form" action="">
+
+                        <div class="col-xs-12 text-center">
+                            <h2 class="section-heading p-b-30">Login</h2>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <!-- Subject -->
+                            <input name="text" class="contact-password form-control" type="username" placeholder="username">
+                        </div>
+                        <div class="col-xs-12">
+                            <!-- Subject -->
+                            <input name="password" class="contact-cmp-password form-control" type="pass" placeholder=" Password">
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="checkbox">
+                                <input type="checkbox" id="agreement">
+                                <label for="agreement">I agree to Your Terms of Service </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Subject Button -->
+                        <div class="btn-form text-center col-xs-12">
+                            <button class="btn btn-fill">Login</button>
+                        </div>
+                    </form>
+
+                </div><!-- End: .modal-content -->
+            </div><!-- End: .modal-dialog -->
+        </div><!-- End: .modal -->
+        <!-- End: login Form
+        ================================== -->
+
+
+
+        
+        <!-- Start: Header Section
+        ================================ -->
+        <section class="header-section-1 bg-image-1 header-js" id="header" >
+            <div class="overlay-color">
+                <div class="container">
+                    <div class="row section-separator">
+
+                        <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+                            <div class="part-inner text-center">
+                                   <img src="images/logo-dark.png" class="animated swing"  width="15%" style="margin-left: 1%" alt="" class=" img-responsive">
+                                <!--  Header SubTitle Goes here -->
+                                <h1 class="title animated fadeInDown" style="font-family: Acme" >SMART PARKING<br></h1> 
+
+                                <div class="detail animated fadeInUp">
+                                    <p style="font-family: 'Pacifico', cursive;">Let's pick your spot!!</p>
+                                </div>
+
+                                <!-- Button Area -->
+                                <div class="btn-form btn-scroll animated fadeIn">
+                                    <a href="#" class="btn btn-border hvr-sweep-to-right " href="#" data-toggle="modal" data-target="#login-form">Get started</a>
+                                </div>
+
+                            </div>
+                        </div> <!-- End: .part-1 -->
+
+                    </div> <!-- End: .row -->
+                </div> <!-- End: .container -->
+            </div> <!-- End: .overlay-color -->
+        </section>
+        <!-- End: Header Section
+        ================================ -->
+
+
+
+        
+        <!-- SCRIPTS 
+        ========================================-->
+        <script src="js/plagin-js/jquery-1.11.3.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/plagin-js/plagin.js"></script>
+
+    
+    </body>
+
 </html>
