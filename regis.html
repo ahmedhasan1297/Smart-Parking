@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="regis.css">
+	<script type="text/javascript" src="angular.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	      <!--making sure that cookies and files are not cached-->
+  <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+  <?php
+    header("Cache-Control: no-store, must-revalidate, max-age=0");
+    header("Pragma: no-cache");
+    header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+  ?>
+	<script type="text/javascript">
+		"use strict"
+		var app=angular.module("parking",[]);
+		app.controller("manage",function($scope){
+			$scope.collect="";
+			$scope.fname="";
+			$scope.empid="";
+			$scope.email="";
+			$scope.password="";
+			$scope.gender="";
+			$scope.vehicle_no="";
+			$scope.phnno="";
+			$scope.checkpassword=function(){
+				alert(password);
+				alert($scope.password);
+				alert(repassword);
+				alert($scope.repassword);
+			
+			};
+		});
+	        //Function for checking the confirm password
+            app.directive("checkme",function(){
+               return{
+            require:'^form',
+            restrict:'A',                         
+            link:function(scope,element,attrs,forminfo)
+            {
+                      //scope.dim=true;
+                      //console.log(forminfo);
+                      var button_dim_counter=0;
+                      scope.$watch('repassword',function(newval,oldval){
+                      button_dim_counter=button_dim_counter+1;
+                      if(scope.repassword==null)
+                      {
+                         forminfo.$invalid=true;  
+                         element.text("confirm password properly"); 
+                         
+                      } 
+                    else if(scope.password!=scope.repassword)
+                      {
+                            forminfo.$invalid=true;  
+                                  element.text("confirm password properly");
+                    }   
+                      else if(button_dim_counter>1)
+                      {
+                                      forminfo.$invalid=false;  
+                                      element.text("");
+                                      
+                      }          
+                },true)
+                scope.$watch('password',function(newval,oldval){
+                    if(scope.password==null)
+                      {
+                         forminfo.$invalid=true;  
+                         element.text("confirm password properly"); 
+                      } 
+                      else if(scope.password!=scope.repassword)
+                      {
+                                  forminfo.$invalid=true;  
+                                  element.text("confirm password properly");
+                       }   
+                              
+                },true)             //console.log(scope.repassword);                  
+                       
+            }
+          }
+          })
+
+	</script>
+</head>
+<body ng-app="parking" ng-controller="manage">
+	<div class="container">
+		<div class="row form_row">
+			<div class="col-md-4 form_col"></div>
+			<div class="col-md-4">
+				<form method="post" name="regform" action="register.php" novalidate>
+					<div><h2>Registration Form</h2></div>
+					<div>
+						<label class="labelname">Name:</label>
+						<label class="req">*</label>
+						<input class="form-control" type="text" name="fname" ng-model="fname" ng-required="true" ng-pattern="/^[A-Za-z]+[A-Za-z ]+$/" >
+						<span ng-show="regform.fname.$invalid && !regform.fname.$pristine">Name is required</span>
+					</div>
+					<div>
+						<label class="labelname">EmpID:</label>
+						<label class="req">*</label>
+						<input class="form-control" type="text" name="empid" ng-model="empid" ng-required="true" ng-pattern="/^[0-9]{6,7}$/">
+						<span ng-show="regform.empid.$invalid && !regform.empid.$pristine">Employee ID is invalid</span>
+					</div>
+					<div>
+						<label class="labelname">Email:</label>
+						<label class="req">*</label>
+						<input class="form-control" type="text" name="email" ng-model="email" >
+<!--ng-pattern="/^[A-Za-z]([A-Za-z0-9\.])+@[a-zA-Z-]\.[a-z]{2,3}$/"						<span ng-show="regform.email.$error.pattern">Enter valid Email</span>-->
+					</div>
+					<div>
+						<label class="labelname">Password:</label>
+						<label class="req">*</label>
+						<input class="form-control" type="password" name="password" ng-model="password" ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[*&_!@.]).{8,}$/" maxlength="20" ng-minlength="8">
+						<details>
+							<summary>Strong Password</summary>
+							<p>Must contain UPPERCASE,lowercase,digit,special character</p>
+						</details>
+						<span ng-show="regform.password.$error.pattern"> Not a strong password</span>
+						<span ng-show="regform.password.$error.minlength">Password is too short</span>
+					</div>
+					<div>
+						<label class="labelname">Confirm Password:</label>
+						<label class="req">*</label>
+						<input class="form-control" type="password" name="confirm" ng-model="repassword">
+						<span  checkme ng-show="regform.confirm.$dirty"></span>
+					</div>
+					<div>
+						<label class="labelname">Gender:</label>
+						<label class="req">*</label>
+						<input  type="radio" class="labelname" name="gender" ng-model="gender" value="male"><label class="labelname" >Male</label></input>
+						<input  type="radio" class="labelname" name="gender" ng-model="gender" value="female"><label class="labelname">Female</label></input>
+					</div>
+					<div>
+						<label class="labelname">Vehicle No:</label>
+						<label class="req">*</label>
+						<input class="form-control" type="text" name="vehicle_no" ng-model="vehicle_no" ng-pattern="/^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$/">
+						<span ng-show="regform.vehicle_no.$error.pattern" >Enter a valid vehicle number</span>
+					</div>
+					<div>
+						<label class="labelname">Phone Number:</label>
+						<label class="req">*</label>
+						<input class="form-control" type="text" name="phnno" ng-model="phnno" ng-minlength="10" maxlength="10" ng-pattern="/^[0-9]{10}$/">
+						<span ng-show="regform.phno.$error.pattern">Enter a valid phone number</span>
+						<span ng-show="regform.phno.$error.minlength">Enter 10 digits only</span>
+					</div>
+					<br>
+					<button ng-disabled="regform.$invalid" type="submit" class="btn btn-success">submit</button>
+				</form>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>
+</body>
+</html>

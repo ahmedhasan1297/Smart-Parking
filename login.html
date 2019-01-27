@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script type="text/javascript" src="angular.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">	
+	<script type="text/javascript">
+		
+		(function(){
+            var c=document.cookie;
+            var mytest1=c.split(';');
+          // console.log(document.cookie);
+            var check=document.cookie;
+            var i=mytest1[0].search("=");
+            i=i+1;
+            if(mytest1[0].charAt(i)=="x")
+            {
+            	window.location.assign("index.php");	
+            }
+            else
+            {
+              
+            }
+     }());
+
+		"use strict"
+		var app=angular.module("contact",[]);
+		app.controller("manage",function($scope){
+			$scope.collect="";
+			$scope.redirect=function(){
+				window.location.assign("regis.html");
+			}
+/*			if($scope.password!=$scope.repassword)
+			{
+				alert("Password is Matched");
+			}
+			else if($scope.repassword=null)
+			{
+				alert("Password is a Mismatch");
+			}*/
+		});
+	</script>
+	<style type="text/css">
+		form button a
+		{
+			display: inline-block;
+			color:white;
+		}
+		h2
+		{
+			text-align: center;
+		}
+		form .btn,form input[type=checkbox]
+		{
+			text-align: center;
+			margin-left: 20%;
+			padding-top: 2%;
+		}
+		form
+		{
+ 			margin-top: 40%;
+ 			padding: 1em 0;
+ 			border: 2px solid #555;
+ 			box-sizing: border-box;
+ 			border-radius: 3%;
+		}/*
+		input[type=text]:focus , input[type=password]:focus, input[type=checkbox]:focus 
+		{
+ 		   border: 3px solid #33ffad;
+ 		   padding-left: 5%;
+ 		   padding-right: 5%;
+		}*/
+		input:focus
+		{
+ 			background: #ffffcc;
+    		outline:5px solid #ffffcc;
+		}
+		img
+		{
+			height: 150px;
+  			width: 50%;
+  			border-radius: 10%;
+		}
+	</style>
+</head>
+<body ng-app="contact" ng-controller="manage">
+	<div class="container">
+		<div class="row form_row">
+			<div class="col-md-4 form_col">
+				<img src="1.jpg" >
+			</div>
+			<div class="col-md-4">
+				<form method="post" name="loginform" action="concheck.php" novalidate>
+					<div class="form"><h2>Login Form</h2></div>
+					<div>
+						<label class="labelname">Email:</label>
+						<input class="form-control" type="text" name="email" ng-model="email" ng-pattern="/^[A-Za-z_]\w+@inmar\.com$/">
+						<span ng-show="loginform.email.$error.pattern">Enter valid Email</span>
+					</div>
+					<div>
+						<label class="labelname">Password:</label>
+						<input class="form-control" type="password" name="password" ng-model="password" maxlength="20" ng-minlength="4">
+						<!--<span ng-show="loginform.password.$error.pattern">Not a strong password</span>-->
+						<span ng-show="loginform.password.$error.minlength">Password is too short</span>
+					</div><br><br>
+					    <button type="submit" ng-disabled="loginfrom.$invalid" class="btn btn-success"><span class="glyphicon glyphicon-log-in"></span> Login</button>
+					    <button type="button" class="btn btn-success" ng-click="redirect()"><span class="glyphicon glyphicon-link"></span>New User</button>					     
+				</form>
+			</div>
+			<div class="col-md-4">
+		</div>
+	</div>
+</body>
+</html>
