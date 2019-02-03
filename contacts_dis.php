@@ -15,7 +15,7 @@
     	{
 	       array_push($data1,array('name'=>$row['name'],'emp_id'=>$row['emp_id'],'vehicle_no'=>$row['vehicle_no'],'phoneno'=>$row['phoneno']));
 	    }
-	}
+	} 
 	else 
 	{
 	    echo "0";
