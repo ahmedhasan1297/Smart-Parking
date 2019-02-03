@@ -10,13 +10,41 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script type="text/javascript" src="angular.js"></script>
   <style>
+  .panel-body{
+    padding: 0px;
+  }
      .panel-default {
-      height: 80px;
-      width: 40%;
-      display: flex;
-      flex-direction: row;
-      /*background-color: green;*/
+      height: 50px;
+
+      /*width: 60%;flex-direction: row;
+*/      display: flex;
+      
+      background-color: green;
     }
+    .row
+    {
+      max-width: 400px;
+      margin: 20px auto 40px; 
+    }
+    .panel:hover
+    {
+      background-color: #55ef37;
+    }
+    .green {
+  border: 1px solid green;
+  width: 15%;
+  background-color: green;
+}
+
+.red {
+  border: 1px solid red;
+  width: 15%;
+  background-color: red;
+}
+.column
+{
+  font-size: 400%;
+}
 
   </style>
   <script type="text/javascript">
@@ -27,12 +55,10 @@
             var mytest1=c.split(';');
 //            console.log(document.cookie);
             var check=document.cookie;
-            var i=mytest1[1].search("=");
+            var i=mytest1[0].search("=");
             i=i+1;
-            if(mytest1[1].charAt(i)=="x")
-            {
-              
-            }
+            if(mytest1[0].charAt(i)=="x")
+            {}
             else
             {
               window.location.assign("index.html");
@@ -57,14 +83,14 @@
        app.service("slotpark_update",function($http){
       this.slot_parkupdate=function(v,status){
           //alert(gid);
-          alert(slot);
+          //alert(slot);
           if(status==1)
           {
-              document.getElementById(slot).style.color="red";
+              document.getElementById("P0001").style.background="red";
           }
-          else
-            document.getElementById(slot).style.color="green";
-          var emp_id='1454865';
+          else//
+            document.getElementById("P0001").style.background="green";
+      //    var emp_id='1454865';
           var request = $http({ 
                method: "post", 
                url: "update_slot.php", 
@@ -76,7 +102,7 @@
                                                   //console.log(p);
                                                   str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                                             }                                                 
-                                            alert(str.join("&"));
+                                            //alert(str.join("&"));
                                               return str.join("&");
                                       },
                data: { 
@@ -91,7 +117,7 @@
                function( response ) { 
                  //alert(response);
                   reset();
-                  alert(response);
+                  //alert(response);
                    } 
            ); 
       }
@@ -100,7 +126,7 @@
        app.service("park_update",function($http){
       this.park_update_slot=function(v,slot_no){
         slot=slot_no;
-        alert(slot);
+       // alert(slot);
 
 /*          //alert(gid);
           var request = $http({ 
@@ -151,7 +177,7 @@
     }
 
     function abcd(){
-      alert("Bitch you got it");
+      //alert("Bitch you got it");
     }
   </script>
 </head>
@@ -186,6 +212,19 @@
   </div>
 </nav>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-5">
+      <input type="" name="" class="green" ng-disabled>
+      <label> Available</label>
+    </div>
+    <div class="col-sm-4">
+      <input type="" name="" class="red" ng-disabled>
+      <label> Parked</label>
+    </div>
+  </div>
+</div>
 <!--modal for updating th parking availability -->
 <div class="container-fluid">
        <!-- Modal -->
@@ -203,7 +242,7 @@
               <input type="text" class="form-control" ng-disabled="true" ng-model="c_vehicle_no" ng-required>
             </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="slot_park_update(1)"><span class=" glyphicon glyphicon-save"><i class="fas fa-parking"></i></span>Park</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="slot_park_update(1)"><span class=" glyphicon glyphicon-save"></span>Park</button>
           <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="slot_park_update(0)"><span class=" glyphicon glyphicon-save"></span>Free</button>
         </div>
       </div>
@@ -214,35 +253,24 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-2">
-      <div class="panel panel-default" id="P0001" ng-click="park('P0001')">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0001
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-motorcycle fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
+      <label id="column"><font size="6">1</font></label>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class="panel panel-default" id="P0002" ng-click="park(P0002)">
         <div class="panel-body Panel-class">
           <div class="row">
-            <div class="col-sm-8">
+            <!--<div class="col-sm-8">
               P0002
             </div>
             <div class="col-sm-4">
               <i class="fas fa-motorcycle fa-2x"></i>
-            </div>
+            </div>-->
           </div>
         </div>
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class="panel panel-default" id="P0003" ng-click="park(P0003)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">
@@ -256,18 +284,6 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0004
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-motorcycle fa-2x"></i>
-            </div>
-          </div>
-          <div class="row"> </div>        </div>
-      </div>
     </div>
     <div class="col-sm-2">
       <div class="panel panel-default">
@@ -284,7 +300,7 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class=" panel panel-default" id="P0006" ng-click="park(P0006)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">
@@ -301,7 +317,7 @@
   
   <div class="row">
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class=" panel panel-default" id="P0007" ng-click="park(P0007)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">
@@ -315,7 +331,7 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class=" panel panel-default" id="P0008" ng-click="park(P0008)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">
@@ -329,7 +345,7 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class=" panel panel-default" id="P0009" ng-click="park(P0009)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">
@@ -343,21 +359,9 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0010
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-car fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class=" panel panel-default" id="P0011" ng-click="park(P0011)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">
@@ -371,7 +375,7 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class=" panel panel-default" id="P0012" ng-click="park(P0012)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">
@@ -387,7 +391,7 @@
   </div>
   <div class="row">
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class=" panel panel-default" id="P0013" ng-click="park(P0013)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">
@@ -401,7 +405,7 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class=" panel panel-default" id="P0014" ng-click="park(P0014)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">
@@ -415,7 +419,7 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class=" panel panel-default" id="P0015" ng-click="park(P0015)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">
@@ -429,21 +433,9 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
-        <div class="panel-body Panel-class">
-          <div class="row">
-            <div class="col-sm-8">
-              P0016
-            </div>
-            <div class="col-sm-4">
-              <i class="fas fa-car fa-2x"></i>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class=" panel panel-default" id="P0017" ng-click="park(P0017)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">
@@ -457,7 +449,7 @@
       </div>
     </div>
     <div class="col-sm-2">
-      <div class="panel panel-default">
+      <div class=" panel panel-default" id="P0018" ng-click="park(P0018)">
         <div class="panel-body Panel-class">
           <div class="row">
             <div class="col-sm-8">

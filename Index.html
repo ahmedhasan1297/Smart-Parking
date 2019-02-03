@@ -38,7 +38,7 @@
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
     <style>
-         .du-1 {
+ /*        .du-1 {
     
         -webkit-animation-delay:0.7s;
         -moz-animation-delay: 0.2s;
@@ -59,11 +59,16 @@
         -moz-animation-delay: 0.5s;
         -o-animation-delay: 0.5s;
         -ms-animation-delay: 0.5s;
-     }
+     }*/
     </style>   
+    <script type="text/javascript">
+        //var app=angular.module("manage",[]);
+        //app.controller("index_control",function($scope){
+        //});
+    </script>
     </head>
 
-    <body class="">
+    <body class="" ng-app="manage" ng-controller="index_control">
 
         <!-- Start: Navbar Area
         ============================= -->
@@ -109,7 +114,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     
-                    <form method="post" class="single-form" action="">
+                    <form method="post" class="single-form" action="register.php">
 
                         <div class="col-xs-12 text-center">
                             <h2 class="section-heading p-b-30">Sign Up</h2>
@@ -166,7 +171,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     
-                    <form method="post" class="single-form" action="">
+                    <form method="post" class="single-form" action="check.php">
 
                         <div class="col-xs-12 text-center">
                             <h2 class="section-heading p-b-30">Login</h2>
@@ -183,7 +188,7 @@
                         <div class="col-xs-12">
                             <div class="checkbox">
                                 <input type="checkbox" id="agreement">
-                                <label for="agreement">I agree to Your Terms of Service </label>
+<!--                                <label for="agreement">I agree to Your Terms of Service </label>-->
                             </div>
                         </div>
                         

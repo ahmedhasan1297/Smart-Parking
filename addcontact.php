@@ -7,7 +7,7 @@
 	$vehicle_no=$_POST['c_vehicle_no'];
 	$phoneno=$_POST['c_phone_no'];
 	//creating a connection to database
-	$conn=new mysqli("localhost","root","","smart-parking");
+	$conn=new mysqli("localhost","root","","smartparking");
 	//check connection
 	if($conn->connect_error)
 	{
