@@ -10,6 +10,7 @@
     <script type="text/javascript" src="angular.js"></script>
     <script type="text/javascript">
     	var xhttp;
+      var slot;
 
 /*    	     (function(){
             var c=document.cookie;
@@ -27,7 +28,7 @@
      }());  */ 
 
     var app=angular.module("admin",[]);
-	app.controller("admincontroller",function($scope,send_addcontact,get_details,delete_contact,edit_contact){
+	app.controller("admincontroller",function($scope,reset_dialog,send_addcontact,get_details,delete_contact,edit_contact,send_update_contact){
 	$scope.collected_details = "";
 	$scope.collect="";
 	$scope.c_name="";
@@ -38,31 +39,52 @@
 	$scope.c_vehicle_no="";
 	$scope.c_phone_no="";
 	$scope.onpageload=function(){
-		alert("hai");
+		//alert("hai");
 		get_details.get_full_details($scope);
-		alert("returned");
+		//alert("returned");
 	}
+  //reset the values of the edit variables
+  $scope.reset=function(){
+        reset_dialog.reset_dialog_($scope);
+  }
 	$scope.deletecontact=function(emp_id){
 		delete_contact.delete_contact_details($scope,emp_id);
 	}
 	$scope.editcontact=function(emp_id){
 		edit_contact.edit_contact_details($scope,emp_id);
 	}
+  $scope.sendupdate_contact=function(c_name,c_emp_id,c_email,c_vehicle_no,c_phno){
+    send_update_contact.send_update_contact_details($scope,c_name,c_emp_id,c_email,c_vehicle_no,c_phno);
+  }
 	$scope.send_add_contact=function(){
               //alert("hhai");
               send_addcontact.send_add_contact_details($scope,$scope.c_name,$scope.c_emp_id,$scope.c_email,$scope.c_password,$scope.c_gender,$scope.c_vehicle_no,$scope.c_phone_no);
             }
 });
+
+app.service("reset_dialog", function($http){
+  //alert("enter the dragon");
+  this.reset_dialog_=function(v){
+        v.c_name="";
+        v.c_emp_id="";
+        v.c_vehicle_no="";
+        v.c_email="";
+        v.c_gender="";
+        v.c_phone_no="";
+        v.c_phno="";
+  }  
+});
+
 app.service("get_details", function($http){
-	alert("enter the dragon");
+	//alert("enter the dragon");
 	this.get_full_details=function(v){
-		alert("My anaconda dance");
+		//alert("My anaconda dance");
 		v.collected_details="";
 		$http.get("contacts_dis.php").then(function(response){
 			
 			v.collected_details=response.data;
 //			alert(JSON.stringify(response));
-			alert(v.collected_details);
+			//alert(v.collected_details);
 		})
 	}  
 });
@@ -98,7 +120,7 @@ app.service("get_details", function($http){
                  // Store the data-dump of the FORM scope. 
                  request.success( 
                      function( data ) { 
-                        alert(data);
+                       // alert(data);
 //                          v.getcontact(gid);
                          } 
                  ); 
@@ -133,8 +155,8 @@ app.service("get_details", function($http){
                      function( data ) { 
                         //alert(data);
                         v.onpageload();
-                         } 
-                 ); 
+                         }
+                  ); 
             }
        });
 
@@ -176,14 +198,42 @@ app.service("get_details", function($http){
                  ); 
             }
        });
-    function reset()
-    {
-        v.c_name="";
-        v.c_emp_id="";
-        v.c_vehicle_no="";
-        v.c_email="";
-        v.c_phno="";
-    }
+//  Function For updating the contact
+     app.service("send_update_contact",function($http){
+      this.send_update_contact_details=function(v,c_name,c_emp_id,c_email,c_vehicle_no,c_phno){
+          //alert(gid);
+          var request = $http({ 
+               method: "post", 
+               url: "update_contact.php", 
+               headers:{'content-type':'application/x-www-form-urlencoded'}, 
+               transformRequest: function(obj) {
+                                            var str = [];
+                                            for(var p in obj)
+                                            {
+                                                  //console.log(p);
+                                                  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                            }                                                 //alert(str.join("&"));
+                                              return str.join("&");
+                                      },
+               data: { 
+                   c_name: c_name,
+                   c_emp_id:c_emp_id,
+                   c_email:c_email,
+                   c_vehicle_no:c_vehicle_no,
+                   c_phno:c_phno
+               } 
+           }); 
+
+           // Store the data-dump of the FORM scope. 
+           request.success( 
+               function( response ) { 
+                 //alert(response);
+                  v.reset();
+                  v.onpageload();
+                   } 
+           ); 
+      }
+ });           
     </script>
 </head>
 <body ng-app="admin" ng-controller="admincontroller" ng-init="onpageload()">
@@ -195,15 +245,9 @@ app.service("get_details", function($http){
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#"><img src="images/logo-dark.png" class="img-responsive" width="12%"></a>
-      <ul class="nav navbar-nav navbar-right">
-      </ul>
+      <a class="navbar-brand" href="#">Smart Parking</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="#" id="showContacts" style="margin-left: -170%"><B>SMART PARKING</B></a></li> 
-        <li><a href="#"  style="padding: 16px 50px;margin-left: -90%" class=" btn btn-info" data-dismiss="modal" ng-click="send_add_contact()"> ADD</a></li>      
-      </ul>
       <ul class="nav navbar-nav navbar-right">
             <li ><a href="#"><label>Welcome:<span class="glyphicon glyphicon-user"></span>
          <span>
@@ -222,8 +266,16 @@ app.service("get_details", function($http){
     </div>      
   </div>
 </nav>
+<div class="row">
+	         <div class="col-sm-12 col-xs-12 result_holder" id="result_holder">
+              <div class="search" ng-hide="group_module">
+                    <i class="glyphicon glyphicon-search"></i>
+                    <input class="fieldcss" placeholder="Search" type="text" name="search_contact_key" ng-model="search_contact_key">
+              </div>
+
+</div>
 <div class="create_contact" ng-hide="contact_module">
-   <a href="#" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal_add"></a>   
+   <a href="#" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal_add"><img src="1.png" width="40" height="30"></a>   
 </div>
 <div class="container-fluid">
        <!-- Modal -->
@@ -266,7 +318,7 @@ app.service("get_details", function($http){
             </div>
         </div>
         <div class="modal-footer">
-        <!--  <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="send_add_contact()">Add</button>-->
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="send_add_contact()">Add</button>
         </div>
       </div>
     </div>
@@ -274,7 +326,7 @@ app.service("get_details", function($http){
 </div>
       <div ng-hide='contact_module'>
             <table class="table table-striped">
-               <tr class="success">
+               <tr>
                   <th>Name</th>
                   <th>Employee ID</th>
                   <th>Vehicle No</th>
@@ -300,7 +352,7 @@ app.service("get_details", function($http){
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" onclick="reset()" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" ng-click="reset()" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Edit Contact</h4>
         </div>
         <div class="modal-body">
@@ -310,7 +362,7 @@ app.service("get_details", function($http){
             </div>
             <div class="form-group">
               <label >Employee ID:</label>
-              <input type="text" class="form-control"  ng_disabled="true" ng-model="c_emp_id" ng-required><span></span>
+              <input type="text" class="form-control"  ng-disabled="true" ng-model="c_emp_id" ng-required><span></span>
             </div>
             <div class="form-group">
               <label >Email:</label>
@@ -326,7 +378,7 @@ app.service("get_details", function($http){
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="send_edit_contact()"><span class=" glyphicon glyphicon-save"></span>Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="sendupdate_contact(c_name,c_emp_id,c_email,c_vehicle_no,c_phno)"><span class=" glyphicon glyphicon-save"></span>Save</button>
         </div>
       </div>
     </div>

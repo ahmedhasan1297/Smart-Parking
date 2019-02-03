@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <script type="text/javascript" src="angular.js"></script>
+  <style>
+  /* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 900px) {
+  .panel-default {
+    background-color: olive;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .align
+  {
+
+  }
+}
+  .align
+  {
+    padding: 40%;
+    box-sizing: box;
+  }
+  .reserved
+  {
+    box-sizing: box;
+    padding: 40%;
+  }
+  font {
+        text-align: center;
+        padding-left: 10%;
+    }
+  .area{
+    margin-top: 5%;
+  }
+  .panel-body{
+    padding: 0px;
+  }
+  .panel-default {
+      height: 30px;
+      display: flex;      
+      background-color: lightgreen;
+    }
+    .row
+    {
+      max-width: 600px;
+      margin: auto; 
+    }
+
+    .panel:hover
+   {
+  box-shadow: 0 0 30px rgba(33,33,33,.2);
+  background: green; 
+}
+    .available
+    {
+  width: 15%;
+  border: 1px solid lightgreen;
+  background-color: lightgreen;
+  border-radius: 20%;
+}
+ .reserved-info
+    {
+  width: 15%;
+  border: 1px solid #5c92e8;
+  background-color: #5c92e8;
+  border-radius: 20%;
+}
+  .reserved1
+  {
+    background-color:#5c92e8;
+    border-radius: 20%;
+  }
+  .red
+  {
+  border: 1px solid red;
+  width: 15%;
+  background-color: red;
+  border-radius: 20%;
+}
+
+  </style>
+  <script type="text/javascript">
+      var xhttp;
+      var emp_id;
+
+           (function(){
+            var c=document.cookie;
+            alert(c);
+            var mytest1=c.split(';');
+//            console.log(document.cookie);
+            var check=document.cookie;
+            var i=mytest1[1].search("=");
+            i=i+1;
+            if(mytest1[1].charAt(i)=="x")
+            {
+              alert(check);
+              alert(mytest1[0]);
+              //var end=mytest1[1].charAt()
+              var end=c.search(";");
+              var start=mytest1[0].search("=");
+              emp_id=mytest1[0].slice(start+1,end);
+              alert(start);
+              alert(end);
+              alert(emp_id);
+            }
+            else
+            {
+              window.location.assign("index.html");
+            }
+     }());  
+
+    var app=angular.module("dashboard",[]);
+    app.controller("dashboard_con",function($scope,park_update,slotpark_update){
+      $scope.slot_no="";
+      $scope.park=function(slot_no){
+        park_update.park_update_slot($scope,slot_no);
+        $('#modal_update').modal('show');
+      }
+      $scope.slot_park_update=function(status){
+        slotpark_update.slot_parkupdate($scope,status,);
+      }
+/*      $scope.slot_free_update=function(){
+        slotfree_update.slot_freeupdate();
+      }
+  */  });
+//Function for updating the slot
+       app.service("slotpark_update",function($http){
+      this.slot_parkupdate=function(v,status){
+          //alert(gid);
+          alert(slot);
+          if(status==1)
+          {
+              document.getElementById(slot).style.background="red";
+          }
+          else//
+            document.getElementById(slot).style.background="green";
+//          var emp_id=;
+          var request = $http({ 
+               method: "post", 
+               url: "update_slot.php", 
+               headers:{'content-type':'application/x-www-form-urlencoded'}, 
+               transformRequest: function(obj) {
+                                            var str = [];
+                                            for(var p in obj)
+                                            {
+                                                  //console.log(p);
+                                                  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                            }                                                 
+                                            //alert(str.join("&"));
+                                              return str.join("&");
+                                      },
+               data: { 
+                   slot: slot,
+                   empid:emp_id,
+                   status:status
+               } 
+           }); 
+
+           // Store the data-dump of the FORM scope. 
+           request.success( 
+               function( response ) { 
+                 //alert(response);
+                  reset();
+                  //alert(response);
+                   } 
+           ); 
+      }
+ });           
+  //Function for getting the slot_no
+       app.service("park_update",function($http){
+      this.park_update_slot=function(v,slot_no){
+        slot=slot_no;
+       // alert(slot);
+
+/*          //alert(gid);
+          var request = $http({ 
+               method: "post", 
+               url: "update_slot.php", 
+               headers:{'content-type':'application/x-www-form-urlencoded'}, 
+               transformRequest: function(obj) {
+                                            var str = [];
+                                            for(var p in obj)
+                                            {
+                                                  //console.log(p);
+                                                  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                                            }                                                 //alert(str.join("&"));
+                                              return str.join("&");
+                                      },
+               data: { 
+//                   c_name: c_name,
+               } 
+           }); 
+
+           // Store the data-dump of the FORM scope. 
+           request.success( 
+               function( response ) { 
+                 //alert(response);
+                  v.reset();
+                  v.onpageload();
+                   } 
+           ); */
+      }
+ });           
+         function delcookie()
+         {
+          var c=document.cookie;
+          var mytest1=c.split(';');
+          //alert("before closing:"+mytest1[0]+" "+mytest1[1]);
+          var v1=mytest1[0].substr(0,mytest1[0].search("="));
+          var v2=mytest1[1].substr(0,mytest1[1].search("="));
+          //alert(v1+"  "+v2);
+          document.cookie = mytest1[0]+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          document.cookie = mytest1[1]+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          //alert("close");
+          window.location.assign("logout.php?p1="+v1+"&p2="+v2);   
+         }
+
+    function reset()
+    {
+      slot="";
+    }
+
+    function abcd(){
+      //alert("Bitch you got it");
+    }
+  </script>
+</head>
+<body ng-app="dashboard" ng-controller="dashboard_con" >
+<nav class="navbar navbar-inverse"t>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Smart Parking</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+            <li ><a href="#"><label>Welcome:<span class="glyphicon glyphicon-user"></span>
+         <span>
+          <script type="text/javascript">
+            var c=document.cookie;
+            var mytest1=c.split(';');
+            var j=mytest1[0].search("=");
+            var arr=mytest1[0].slice(j+1,j+8);
+            document.write(arr);
+          </script>
+         </span>
+        </label></a></li>
+        <li><a href="#" onclick="delcookie()"><span class="glyphicon glyphicon-log-out"></span> Signout</a></li>
+      </ul>
+    </div>      
+  </div>
+</nav>
+
+<div class="container-fluid">
+  
+</div>
+<!--modal for updating th parking availability -->
+<div class="container-fluid">
+       <!-- Modal -->
+  <div class="modal fade" id="modal_update" role="dialog">
+    <div class="modal-dialog">    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" onclick="reset()" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Update Slot</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+              <label >Vehilce No:</label>
+              <input type="text" class="form-control" ng-disabled="true" ng-model="c_vehicle_no" ng-required>
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="slot_park_update(1)"><span class=" glyphicon glyphicon-save"></span>Park</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="slot_park_update(0)"><span class=" glyphicon glyphicon-save"></span>Free</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="area">
+    <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4 ">
+      <input type="" name="" class="reserved-info">
+      <label>Reserved</label>
+    </div>
+    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4" >
+      <input type="" name="" class="available"  disabled>
+      <label> Available</label>
+    </div>
+    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
+      <input type="" name="" class="red" disabled>
+      <label> Parked</label>
+    </div>
+  </div>
+      <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <label><font size="5" id="A">A</font></label>
+    </div>
+    <div class="col-sm-1">
+      <label><font size="5" id="B" >B</font></label>    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <label><font size="5" id="C" >C</font></label>    </div>
+    <div class="col-sm-1">
+      <label><font size="5" id="D" >D</font></label>    </div>
+          <div class="col-sm-1">
+             <label><font size="5" id="E" >E</font></label>
+    </div>
+    <div class="col-sm-1">
+     
+    </div>
+    <div class="col-sm-1">
+      <label><font size="5" id="F" >F</font></label>
+    </div>
+    <div class="col-sm-1">
+      <label><font size="5" id="G" >G</font></label>
+    </div>
+    <div class="col-sm-1">
+      <label><font size="5" id="H" >H</font></label>
+    </div>
+    <div class="col-sm-1">
+    </div>
+
+  </div>
+
+     <div class="row">
+    <div class="col-sm-1">
+      <label id="column"><font size="5">1</font></label>
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="A1" ng-click="park(A1)">
+        <div class="panel-body Panel-class">
+ <span class="align">B</span>
+          <div class="row">
+            <!--<div class="col-sm-8">
+              P0002
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="B1" ng-click="park(B1)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="C1" ng-click="park(C1)">
+        <div class="panel-body Panel-class">
+ <label class="align">C</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="D1" ng-click="park(D1)">
+        <div class="panel-body Panel-class">
+ <label class="align">C</label>
+        </div>
+      </div>
+    </div>
+        <div class="col-sm-1">
+      <div class=" panel panel-default" id="E1" ng-click="park(E1)">
+        <div class="panel-body Panel-class">
+ <label class="align">C</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="F1" ng-click="park(F1)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="G1" ng-click="park(G1)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="H1" ng-click="park(H1)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+
+  </div>
+       <div class="row">
+    <div class="col-sm-1">
+      <label id="column"><font size="5">2</font></label>
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="A2" ng-click="park(A2)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+          <div class="row">
+            <!--<div class="col-sm-8">
+              P0002
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="B2" ng-click="park(B2)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="C2" ng-click="park(C2)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="D2" ng-click="park(D2)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+        <div class="col-sm-1">
+      <div class=" panel panel-default" id="E2" ng-click="park(E2)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="F2" ng-click="park(F2)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="G2" ng-click="park(G2)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default reserved1 " id="H2" ng-click="park(H2)">
+        <div class="panel-body Panel-class">
+ <label class="reserved">R</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+
+  </div>
+
+     <div class="row">
+    <div class="col-sm-1">
+      <label id="column"><font size="5">3</font></label>
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default reserved1" id="A3" ng-click="park(A3)">
+        <div class="panel-body Panel-class">
+ <label class="reserved">R</label>
+          <div class="row">
+            <!--<div class="col-sm-8">
+              P0002
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default reserved1" id="B3" ng-click="park(B3)">
+        <div class="panel-body Panel-class">
+ <label class="reserved">R</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default reserved1" id="C3" ng-click="park(C3)">
+        <div class="panel-body Panel-class">
+ <label class="reserved">R</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="D3" ng-click="park(D3)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+        <div class="col-sm-1">
+      <div class=" panel panel-default" id="E3" ng-click="park(E3)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="F3" ng-click="park(F3)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="G3" ng-click="park(G3)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="H3" ng-click="park(H3)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+
+  </div>
+     <div class="row">
+    <div class="col-sm-1">
+      <label id="column"><font size="5">4</font></label>
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="A4" ng-click="park(A4)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+          <div class="row">
+            <!--<div class="col-sm-8">
+              P0002
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="B4" ng-click="park(B4)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="C4" ng-click="park(C4)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="D4" ng-click="park(D4)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+        <div class="col-sm-1">
+      <div class=" panel panel-default" id="E4" ng-click="park(E4)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="F4" ng-click="park(F4)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="G4" ng-click="park(G4)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="H4" ng-click="park(H4)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+
+  </div>
+     <div class="row">
+    <div class="col-sm-1">
+      <label id="column"><font size="5">5</font></label>
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="A5" ng-click="park(A5)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+          <div class="row">
+            <!--<div class="col-sm-8">
+              P0002
+            </div>
+            <div class="col-sm-4">
+              <i class="fas fa-motorcycle fa-2x"></i>
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="B5" ng-click="park(B5)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <div class="panel panel-default" id="C5" ng-click="park(C5)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="D5" ng-click="park(D5)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+        <div class="col-sm-1">
+      <div class=" panel panel-default" id="E5" ng-click="park(E5)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="F5" ng-click="park(F5)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="G5" ng-click="park(G5)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class=" panel panel-default" id="H5" ng-click="park(H5)">
+        <div class="panel-body Panel-class">
+ <label class="align">B</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+
+  </div>   
+  </div>
+  </div>
+
+</body>
+</html>

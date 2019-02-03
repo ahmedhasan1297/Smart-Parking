@@ -2,7 +2,7 @@
 $servername="localhost";
 $user="root";
 $pass="";
-$db="timetables";
+$db="smartparking";
 $conn=mysqli_connect($servername,$user,$pass,$db);
 if(!$conn)
 {
@@ -35,19 +35,19 @@ if(!$conn)
        //echo "<script>alert('giving login again');</script>";
        //
 
-    header("Location:index.php");
+    //header("Location:index.php");
      //}
      //else
      //{
        setcookie("test","x", time() + (86400 * 1), "/");
        setcookie("username",$username, time() + (86400 * 1), "/");     }
-     header("Location:index.php");
-   }
+     header("Location:dashboard.html");
+   }/*
    else
    {
     header("Location:login.html");
    	  //  header("Location:login2.html");
    }
- }
+ }*/
    //mysqli_close($conn);
 ?>
