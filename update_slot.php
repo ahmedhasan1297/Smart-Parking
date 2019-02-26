@@ -9,11 +9,14 @@
 	    die("Connection failed: " . $conn->connect_error);
 	} 
 	//echo "DB Connection Successful";
-	if ($status==1)
+	$sql1="SELECT * from slot_status where emp_id='$empid'	";
+    $result=$conn->query($sql1);
+    $rows=mysqli_num_rows($result);
+    if($rows==0)
 	$sql = "INSERT INTO slot_status(emp_id, slot_no, status) values ('$empid','$slot','$status'
 )";
 	else
-	$sql = "UPDATE slot_status set status=0 where emp_id='$empid'";
+	$sql = "UPDATE slot_status set status='$status' , slot_no='$slot' where emp_id='$empid'";
 
 	if ($conn->query($sql))
 	{

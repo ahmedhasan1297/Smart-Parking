@@ -25,17 +25,19 @@
            (function(){
             var c=document.cookie;
             var mytest1=c.split(';');
+            alert(c);
+            alert(mytest1);
 //            console.log(document.cookie);
             var check=document.cookie;
-            var i=mytest1[1].search("=");
+            var i=mytest1[2].search("=");
             i=i+1;
-            if(mytest1[1].charAt(i)=="x")
+            if(mytest1[2].charAt(i)=="x")
             {
               
             }
             else
             {
-              window.location.assign("index.html");
+//              window.location.assign("index.html");
             }
      }());   
 

@@ -5,30 +5,33 @@
 		<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Acme|Pacifico" rel="stylesheet">
     <script type="text/javascript" src="angular.js"></script>
     <script type="text/javascript">
     	var xhttp;
-      var slot;
 
-/*    	     (function(){
+    	     (function(){
             var c=document.cookie;
             var mytest1=c.split(';');
-          // console.log(document.cookie);
+            console.log(document.cookie);
             var check=document.cookie;
-            var i=mytest1[0].search("=");
-            i=i+1;
-            if(mytest1[0].charAt(i)=="x")
-            {}
+            var i=mytest1[1].search("=");
+            i=i+3;
+            if(mytest1[1].charAt(i)=="A")
+            {
+              //alert(c);
+            }
             else
             {
-              window.location.assign("login.html");
+              window.location.assign("index.html");
             }
-     }());  */ 
+     }());   
 
     var app=angular.module("admin",[]);
-	app.controller("admincontroller",function($scope,reset_dialog,send_addcontact,get_details,delete_contact,edit_contact,send_update_contact){
+	app.controller("admincontroller",function($scope,send_addcontact,get_details,delete_contact,edit_contact){
 	$scope.collected_details = "";
 	$scope.collect="";
 	$scope.c_name="";
@@ -39,52 +42,31 @@
 	$scope.c_vehicle_no="";
 	$scope.c_phone_no="";
 	$scope.onpageload=function(){
-		//alert("hai");
+//		alert("hai");
 		get_details.get_full_details($scope);
-		//alert("returned");
+//		alert("returned");
 	}
-  //reset the values of the edit variables
-  $scope.reset=function(){
-        reset_dialog.reset_dialog_($scope);
-  }
 	$scope.deletecontact=function(emp_id){
 		delete_contact.delete_contact_details($scope,emp_id);
 	}
 	$scope.editcontact=function(emp_id){
 		edit_contact.edit_contact_details($scope,emp_id);
 	}
-  $scope.sendupdate_contact=function(c_name,c_emp_id,c_email,c_vehicle_no,c_phno){
-    send_update_contact.send_update_contact_details($scope,c_name,c_emp_id,c_email,c_vehicle_no,c_phno);
-  }
 	$scope.send_add_contact=function(){
               //alert("hhai");
               send_addcontact.send_add_contact_details($scope,$scope.c_name,$scope.c_emp_id,$scope.c_email,$scope.c_password,$scope.c_gender,$scope.c_vehicle_no,$scope.c_phone_no);
             }
 });
-
-app.service("reset_dialog", function($http){
-  //alert("enter the dragon");
-  this.reset_dialog_=function(v){
-        v.c_name="";
-        v.c_emp_id="";
-        v.c_vehicle_no="";
-        v.c_email="";
-        v.c_gender="";
-        v.c_phone_no="";
-        v.c_phno="";
-  }  
-});
-
 app.service("get_details", function($http){
-	//alert("enter the dragon");
+//	alert("enter the dragon");
 	this.get_full_details=function(v){
-		//alert("My anaconda dance");
+//		alert("My anaconda dance");
 		v.collected_details="";
 		$http.get("contacts_dis.php").then(function(response){
 			
 			v.collected_details=response.data;
 //			alert(JSON.stringify(response));
-			//alert(v.collected_details);
+//			alert(v.collected_details);
 		})
 	}  
 });
@@ -120,8 +102,9 @@ app.service("get_details", function($http){
                  // Store the data-dump of the FORM scope. 
                  request.success( 
                      function( data ) { 
-                       // alert(data);
+//                        alert(data);
 //                          v.getcontact(gid);
+                            v.onpageload();
                          } 
                  ); 
             }
@@ -155,8 +138,8 @@ app.service("get_details", function($http){
                      function( data ) { 
                         //alert(data);
                         v.onpageload();
-                         }
-                  ); 
+                         } 
+                 ); 
             }
        });
 
@@ -198,85 +181,209 @@ app.service("get_details", function($http){
                  ); 
             }
        });
-//  Function For updating the contact
-     app.service("send_update_contact",function($http){
-      this.send_update_contact_details=function(v,c_name,c_emp_id,c_email,c_vehicle_no,c_phno){
-          //alert(gid);
-          var request = $http({ 
-               method: "post", 
-               url: "update_contact.php", 
-               headers:{'content-type':'application/x-www-form-urlencoded'}, 
-               transformRequest: function(obj) {
-                                            var str = [];
-                                            for(var p in obj)
-                                            {
-                                                  //console.log(p);
-                                                  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                                            }                                                 //alert(str.join("&"));
-                                              return str.join("&");
-                                      },
-               data: { 
-                   c_name: c_name,
-                   c_emp_id:c_emp_id,
-                   c_email:c_email,
-                   c_vehicle_no:c_vehicle_no,
-                   c_phno:c_phno
-               } 
-           }); 
+         function delcookie()
+         {
+          var c=document.cookie;
+          var mytest1=c.split(';');
+          //alert("before closing:"+mytest1[0]+" "+mytest1[1]);
+          var v1=mytest1[0].substr(0,mytest1[0].search("="));
+          var v2=mytest1[1].substr(0,mytest1[1].search("="));
+          //alert(v1+"  "+v2);
+          document.cookie = mytest1[0]+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          document.cookie = mytest1[1]+"=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          //alert("close");
+          window.location.assign("logout.php?p1="+v1+"&p2="+v2);   
+         }
 
-           // Store the data-dump of the FORM scope. 
-           request.success( 
-               function( response ) { 
-                 //alert(response);
-                  v.reset();
-                  v.onpageload();
-                   } 
-           ); 
-      }
- });           
+
+    function reset()
+    {
+        v.c_name="";
+        v.c_emp_id="";
+        v.c_vehicle_no="";
+        v.c_email="";
+        v.c_phno="";
+    }
     </script>
+    <style>
+      .jumbotron{
+        padding:5%;
+        box-sizing: box;
+      }
+      .fa-sign-out,.fa-plus,.glyphicon-user{
+        background-color: #00b4cc;   
+        color: #fff;
+        padding: 5%;
+        box-sizing: border-box;  
+        margin-left: 6%;
+        border-radius: 4px; 
+      }
+
+        .navbar-right{
+          margin-right:6%;
+        }
+        .details{
+          margin-top: -5%;
+          border-top:red;
+          position: absolute;
+          z-index: 1;
+          margin-left: 6%;
+ 
+        }
+        .jumbotron{
+          background:#c94c4c;
+          width: 100%;
+        }
+      
+  .search {
+  width: 100%;
+  position: relative
+  margin-left:10%;
+  margin-top: -2%;
+   }
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+  color: #9DBFAF;
+  margin-top: -8%;
+  margin-left: 14%;    
+
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  position: absolute;  
+  right: -50px;
+  width: 44px;
+  height: 38px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: -8%;          
+}
+ @media (max-width: 991px) {
+
+      .search{
+        width: 50%;
+        margin-left:20%;
+        }  
+        .navbar img{
+          width: 15%;
+          margin-left: 25%;
+        }
+        .navbar-right li a label{
+          display: none;
+        }
+        .navbar-right li a i{
+          float:right;
+          //margin-right: 10%;
+          padding: 3%;
+          //margin-top: -2%;
+        }
+        .fa-sign-out{
+          margin-top: -7%;
+          margin-right:5%;
+          padding: 3%;
+        }
+        .details{
+          width: inherit;
+          margin-left: 0;
+          position: relative;
+          z-index: none;
+        }
+}
+
+@media (max-width: 1199px) {
+  .search{
+        width: 50%;
+        float: left;
+        }  
+        .navbar img{
+          width: 15%;
+          margin-left: 25%;
+        }
+        .navbar-right li a label{
+          display: none;
+        }
+        .navbar-right li a i{
+          float:right;
+          //margin-right: 10%;
+          padding: 3%;
+        }
+        .fa-sign-out{
+          margin-top: -5%;
+          margin-right:5%;
+          padding: 3%;
+          float: 
+        }
+}
+}
+
+ </style>  
 </head>
 <body ng-app="admin" ng-controller="admincontroller" ng-init="onpageload()">
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
+<nav class="navbar navbar-default jumbotron">
+  <div class="container-fluid ">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Smart Parking</a>
+      <a class="navbar-brand" href="#"><img src="images/logo-dark.png" class="img-responsive" width="25%" style="margin-left: -15%; margin-top:-7%; "></a>
+      <ul class="nav navbar-nav navbar-right">
+      </ul>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+           <li><a href="#" id="showContacts" style="margin-left: -150%;font-family: Acme; font-size:20px;color: #fff;"><B>SMART PARKING</B></a></li> 
+             <li class="search"><input type="text" class="searchTerm" placeholder="What are you looking for?" name="search_contact_key" ng-model="search_contact_key">
+          <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+          </button></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
-            <li ><a href="#"><label>Welcome:<span class="glyphicon glyphicon-user"></span>
-         <span>
-          <!-- <script type="text/javascript">
+        <li ><a href="#"><label style="font-family: Acme;font-size: 18px;margin-top: 2%;color: #fff;">Welcome: <span>
+          <script type="text/javascript">
+            var c=document.cookie;
+            var mytest1=c.split(';');
+            var j=mytest1[0].search("=");
+            var k=c.search(";");
+            var arr=c.slice(j+1,k);
+            document.write(arr);
+          </script>
+         </span><i class="fa fa-id-badge"></i></label></a></li>
+            <li><a href="#" class=" btn" data-dismiss="modal" ><i class="fa fa-plus fa-2x btn btn-info btn-lg" data-toggle="modal" data-target="#modal_add">Add</i></a></li>  
+            <li><a href="#" class=" btn" onclick="delcookie()"><i class="fa fa-sign-out fa-2x">Signout</i></a></li>
+      </ul>
+    </div>      
+  </div>
+</nav>
+<!-- style="padding: 16px 8px;margin-right: 50%"
+--         <a href="#" class=" btn" onclick="delcookie()"><span>
+          <script type="text/javascript">
             var c=document.cookie;
             var mytest1=c.split(';');
             var j=mytest1[1].search("=");
             var k=mytest1[1].search("%");
             var arr=mytest1[1].slice(j+1,k);
             document.write(arr);
-          </script> -->
-         </span>
-        </label></a></li>
-        <li><a href="#" onclick="delcookie()"><span class="glyphicon glyphicon-log-out"></span> Signout</a></li>
-      </ul>
-    </div>      
-  </div>
-</nav>
-<div class="row">
-	         <div class="col-sm-12 col-xs-12 result_holder" id="result_holder">
-              <div class="search" ng-hide="group_module">
-                    <i class="glyphicon glyphicon-search"></i>
-                    <input class="fieldcss" placeholder="Search" type="text" name="search_contact_key" ng-model="search_contact_key">
-              </div>
-
-</div>
-<div class="create_contact" ng-hide="contact_module">
-   <a href="#" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal_add"><img src="1.png" width="40" height="30"></a>   
-</div>
+          </script>
+         </span> -->
+        
 <div class="container-fluid">
        <!-- Modal -->
   <div class="modal fade" id="modal_add" role="dialog">
@@ -302,7 +409,7 @@ app.service("get_details", function($http){
             </div>
             <div class="form-group">
               <label >password:</label>
-              <input type="text" class="form-control" ng-model="c_password" ng-required><span></span>
+              <input type="password" class="form-control" ng-model="c_password" ng-required><span></span>
             </div>
             <div class="form-group">
               <label >gender:</label>
@@ -316,17 +423,18 @@ app.service("get_details", function($http){
               <label >Phone no:</label>
               <input type="text" class="form-control" ng-model="c_phone_no" ng-required><span></span>
             </div>
-        </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="send_add_contact()">Add</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="send_add_contact()">Add</button>
+        </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-      <div ng-hide='contact_module'>
-            <table class="table table-striped">
-               <tr>
+<div class="container details">
+        <div ng-hide="contact_module">
+            <table class="table">
+               <tr class="success">
                   <th>Name</th>
                   <th>Employee ID</th>
                   <th>Vehicle No</th>
@@ -344,6 +452,9 @@ app.service("get_details", function($http){
                </tr>
            </table>
       </div>
+
+</div>
+
       <!--model for contact editing-->
 <div class="container-fluid">
        <!-- Modal -->
@@ -352,7 +463,7 @@ app.service("get_details", function($http){
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" ng-click="reset()" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" onclick="reset()" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Edit Contact</h4>
         </div>
         <div class="modal-body">
@@ -362,7 +473,7 @@ app.service("get_details", function($http){
             </div>
             <div class="form-group">
               <label >Employee ID:</label>
-              <input type="text" class="form-control"  ng-disabled="true" ng-model="c_emp_id" ng-required><span></span>
+              <input type="text" class="form-control"  ng_disabled="true" ng-model="c_emp_id" ng-required><span></span>
             </div>
             <div class="form-group">
               <label >Email:</label>
@@ -378,7 +489,7 @@ app.service("get_details", function($http){
             </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="sendupdate_contact(c_name,c_emp_id,c_email,c_vehicle_no,c_phno)"><span class=" glyphicon glyphicon-save"></span>Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="send_edit_contact()"><span class=" glyphicon glyphicon-save"></span>Save</button>
         </div>
       </div>
     </div>
