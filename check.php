@@ -3,19 +3,19 @@ $servername="localhost";
 $user="root";
 $pass="";
 $db="smartparking";
-$conn=mysqli_connect($servername,$user,$pass,$db);
-if(!$conn)
+$conn=new mysqli($servername,$user,$pass,$db);
+if($conn->connect_error)
 {
-  die("Connection failed:" .mysqli_connect_error()); 
+  die("Connection failed:" .$conn->connect_error); 
 }
    $username=$_POST['text'];
    $password=$_POST['password'];
   if (isset($_POST['text']) && isset($_POST['password']))
   {
    $sql="select * from registration where emp_id='$username' and password='$password'";
-   $query=mysqli_query($conn, $sql);
+   $result=$conn->query($sql);
    $rows=mysqli_num_rows($query);
-   if($rows==1)
+   if($result->num_rows==1)
    {
 /*    if (isset($_POST['rememberme']))
     {*/
@@ -30,18 +30,18 @@ if(!$conn)
      //}
      //else
      //{
-      $row=$result->fetch_assoc();
+      $row= $result->fetch_assoc();
        setcookie("username",$username, time() + (86400 * 1), "/");
-       setcookie("mailid",$)
-       setcookie("test","x", time() + (86400 * 1), "/");
-    }
-     header("Location:dashboard.html");
+       setcookie("test","$", time() + (86400 * 1), "/");
+       setcookie("mailid",$row['mail_id'],time() + (86400 * 1),"/");
+       header("Location:admin2.html");
+    }     
    //}
-   /*else
+  else
    {
     //echo "<script>alert('giving login again');</script>";
-   	    header("Location:login2.html");
-   }*/
+   	    header("Location:index.html");
+   }
  }
    mysqli_close($conn);
 ?>

@@ -603,7 +603,7 @@ h6 {
     display: none;
   }
 }
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
   h1 {
     font-size: 45px;
     line-height: 65px;
@@ -615,7 +615,7 @@ h6 {
      *  Defult CSS 
      * ===============================
      */
-  html *,
+  /*html *,
   body,
   p {
     text-align: center;
@@ -625,7 +625,7 @@ h6 {
      *   Defult Button Style
      * ===============================
      */
-  .btn.btn-fill,
+  /*.btn.btn-fill,
   .btn.btn-border {
     padding: 3px 15px;
     min-width: 120px;
@@ -635,7 +635,7 @@ h6 {
      *  Section Top and Bottom padding  
      * ===============================
      */
-  .section-separator {
+  /*.section-separator {
     display: block;
     padding-top: 100px;
     padding-bottom: 100px;
@@ -645,7 +645,7 @@ h6 {
      *  Section Heading Style
      * ===============================
      */
-  .section-header.text-left,
+  /*.section-header.text-left,
   .section-header.text-right,
   .section-header.text-left *,
   .section-header.text-right * {
@@ -656,7 +656,7 @@ h6 {
      * Nav Defult Style
      * ================================
      */
-  .nav {
+  /*.nav {
     display: inline-block;
   }
   ul,
@@ -673,7 +673,7 @@ h6 {
      *   Defult Button Style
      * ===============================
      */
-  .btn,
+  /*.btn,
   .btn:last-child {
     margin: 10px !important;
   }
@@ -682,7 +682,7 @@ h6 {
      *   Display Vertical
      * ===============================
      */
-  .vertical-middle {
+ /* .vertical-middle {
     display: block;
   }
 }
@@ -914,3 +914,215 @@ h6 {
   animation-delay:2.5s;
   -webkit-animation-delay:2.5s;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 600px) and (max-width: 766px){
+  .reserved-info{
+    width: 10%;
+    border:1px solid white;
+    background-color: #5c92e8;
+    border-radius: 20%
+  }
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 991px){
+  body{
+    background-color: pink;
+    line-height: 10px;
+  }
+.available{
+    width: 15%;
+    border: 1px solid lightgreen;
+    background-color: lightgreen;
+    border-radius: 20%;
+}
+.reserved-info{
+  width: 15%;
+    border: 1px solid #5c92e8;
+    background-color: blue;
+    border-radius: 20%;
+}
+  .red
+  {
+    width: 15%;
+    border: 1px solid red;
+    background-color: red;
+    border-radius: 20%;
+    box-shadow: border-box;
+    margin-right: 1%;
+  }
+
+  /* removing hte padding for panels*/
+  .panel-body{
+    padding: 0%; 
+  }
+  .row{
+    line-height: 20px;
+  }
+  .align{
+    box-sizing: border-box;
+    border-radius: 20%;
+  }
+  .self-parked{
+    width: 10%;
+  }
+  .panel-default {
+      height: 30px;
+      display: flex;      
+      background-color: lightgreen;
+    }
+    .row
+    {
+      max-width: 600px;
+      margin: auto; 
+    }
+
+
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1023px) {
+  body{
+    background-color: yellow;
+  }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+  .align
+  {
+    padding-left:  20%;
+    box-sizing: border-box;
+  }
+  .reserved
+  {
+    box-sizing: border-box;
+    padding-left:  20%;
+  }
+  font {
+        text-align: center;
+        padding-left: 10%;
+    }
+  .area{
+    margin-top: 5%;
+  }
+  .panel-body{
+    padding: 0px;
+  }
+  .panel-default {
+      height: 30px;
+      display: flex;      
+      background-color: lightgreen;
+    }
+    .image-logo
+    {
+      margin: auto;
+    }
+    .row
+    {
+      max-width: 600px;
+    }
+    .row-lots
+    {
+      margin-left:6%;
+    }
+   .panel:hover
+   {
+  box-shadow: 0 0 30px rgba(33,33,33,.2);
+  background: green; 
+}
+  
+  .available
+    {
+  width: 15%;
+  border: 1px solid lightgreen;
+  background-color: lightgreen;
+  border-radius: 20%;
+}
+img
+{
+  margin-top: -10%;
+}
+.heading1,.quote1{
+  margin-top: 0%;
+}
+ .reserved-info
+    {
+  width: 15%;
+  border: 1px solid white;
+  background-color: #5c92e8;
+  border-radius: 20%;
+}
+  .reserved1
+  {
+    background-color:#5c92e8;
+    border-radius: 20%;
+  }
+  .red
+  {
+  border: 1px solid white;
+  width: 15%;
+  background-color: red;
+  border-radius: 20%;
+}
+.selfparked{
+  border: 1px solid white;
+  width: 15%;
+  background-color: grey;
+  border-radius: 20%;
+}
+.seating{
+    margin-top:1%;
+    position: relative;
+    animation-delay: 2s;
+    background-color: #909393; 
+    margin-left: -30%;    
+    width: 150%;
+    border-radius: 20%;
+}
+.navbar-inverse{
+   background:  #000;
+}
+.navbar{
+    margin-bottom: 0px;
+}
+body{
+    background: url('images/background-1 (2).jpg');
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: 100% 100%;
+  background-attachment: initial;
+  background-repeat: no-repeat;
+  background-color:#ffffff;
+  max-height: 100%;
+  color: black;
+}
+
+
+/*Responsive styles for mobile devices*/
+@media screen and (max-width: 320px){
+ .reserved-info{
+    width: 10%;
+    border:1px solid white;
+    background-color: #5c92e8;
+    border-radius: 20%;
+  }
+ }
+ @media screen and (max-width: 599px) and (min-width: 321px){
+  .seating{
+        margin-top:1%;
+    position: relative;
+    animation-delay: 2s;
+    background-color: #909393; 
+    margin-left: -15%;    
+    width: 130%;
+    border-radius: 20%;
+  }
+  .img-responsive{
+    margin-top: 0px;
+  }
+ }

@@ -7,13 +7,13 @@
 	    die("Connection failed: " . $conn->connect_error);
 	} 
 	//echo "DB Connection Successful";
-	$sql = "SELECT name,emp_id,vehicle_no,phoneno FROM registration";
+	$sql = "SELECT * FROM slot_status where status=1";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) 
 	{    
     while($row = $result->fetch_assoc()) 
     	{
-	       array_push($data1,array('name'=>$row['name'],'emp_id'=>$row['emp_id'],'vehicle_no'=>$row['vehicle_no'],'phoneno'=>$row['phoneno']));
+	       array_push($data1,array('emp_id'=>$row['emp_id'],'slot_no'=>$row['slot_no'],'status'=>$row['status']));
 	    }
 	} 
 	else 

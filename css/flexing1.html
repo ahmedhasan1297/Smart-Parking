@@ -5,14 +5,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <!--animate css-->
-  <link rel="stylesheet" href="css/animate.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-   <script type="text/javascript" src="angular.js"></script>
-   <link href="https://fonts.googleapis.com/css?family=Acme|Pacifico" rel="stylesheet">
-
+    <script type="text/javascript" src="angular.js"></script>
   <style>
   /* On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 900px) {
@@ -63,7 +59,6 @@
   box-shadow: 0 0 30px rgba(33,33,33,.2);
   background: green; 
 }
-  
     .available
     {
   width: 15%;
@@ -90,17 +85,7 @@
   background-color: red;
   border-radius: 20%;
 }
-.seating{
-	margin-top: 6%;
-	border-top:200px solid #000;
-	border-top-width: 5px;
-	animation-delay: 2s;
-	background-color: #4a6572; 
-	
-}
-label{
-  color:white;
-}
+
   </style>
   <script type="text/javascript">
       var xhttp;
@@ -134,7 +119,6 @@ label{
               window.location.assign("index.html");
             }
      }());  
-
 
     var app=angular.module("dashboard",[]);
     app.controller("dashboard_con",function($scope,park_update,slotpark_update,slot_status_update){
@@ -295,8 +279,7 @@ app.service("slot_status_update", function($http){
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-
-      <a class="navbar-brand" href="#" style="font-family: Acme;"><img src="images/logo-dark.png" width="8%" style="float: left; margin-left: -10px; margin-top: -5px; margin-right: 2%;">Smart Parking</a>
+      <a class="navbar-brand" href="#">Smart Parking</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -334,7 +317,7 @@ app.service("slot_status_update", function($http){
         </div>
         <div class="modal-body">
             <div class="form-group">
-                    <label >Vehilce No:</label>
+              <label >Vehilce No:</label>
               <input type="text" class="form-control" ng-disabled="true" ng-model="c_vehicle_no" ng-required>
             </div>
         <div class="modal-footer">
@@ -345,71 +328,65 @@ app.service("slot_status_update", function($http){
     </div>
   </div>
 </div>
- <div class="row" style="position: absolute;">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
- 		<img src="images/park.png" class="animated swing" width="25%" height="15%" style="margin-left: 5%;margin-top: 5%;animation-delay: 0.4s;">
- 		<h2 style="font-family: Pacifico; animation-delay: 0.5s; color: #f9aa33" class="animated fadeIn">let's pick your spot</h2>
-    </div>
-    
- </div>
 
-<div class="container seating">
-  <div class="area animated fadeIn " style="animation-delay: 0.7s;">
-  <div class="row">
+<div class="container-fluid">
+  <div class="area">
+    <div class="row">
     <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4 ">
       <input type="" name="" class="reserved-info">
-            <label>Reserved</label>
+      <label>Reserved</label>
     </div>
     <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4" >
       <input type="" name="" class="available"  disabled>
-            <label> Available</label>
+      <label> Available</label>
     </div>
     <div class="col-sm-12 col-xs-12 col-md-6 col-lg-4">
       <input type="" name="" class="red" disabled>
-            <label> Parked</label>
+      <label> Parked</label>
     </div>
   </div>
- <div class="row">
+      <div class="row">
     <div class="col-sm-1">
     </div>
     <div class="col-sm-1">
-            <label><font size="5" id="A">A</font></label>
+      <label><font size="5" id="A">A</font></label>
     </div>
     <div class="col-sm-1">
-            <label><font size="5" id="B" >B</font></label>    </div>
+      <label><font size="5" id="B" >B</font></label>    </div>
     <div class="col-sm-1">
     </div>
     <div class="col-sm-1">
-            <label><font size="5" id="C" >C</font></label>    </div>
+      <label><font size="5" id="C" >C</font></label>    </div>
     <div class="col-sm-1">
-            <label><font size="5" id="D" >D</font></label>    </div>
+      <label><font size="5" id="D" >D</font></label>    </div>
           <div class="col-sm-1">
-                   <label><font size="5" id="E" >E</font></label>
+             <label><font size="5" id="E" >E</font></label>
     </div>
     <div class="col-sm-1">
      
     </div>
     <div class="col-sm-1">
-            <label><font size="5" id="F" >F</font></label>
+      <label><font size="5" id="F" >F</font></label>
     </div>
     <div class="col-sm-1">
-            <label><font size="5" id="G" >G</font></label>
+      <label><font size="5" id="G" >G</font></label>
     </div>
     <div class="col-sm-1">
-            <label><font size="5" id="H" >H</font></label>
+      <label><font size="5" id="H" >H</font></label>
     </div>
     <div class="col-sm-1">
     </div>
- </div>
 
-  <div class="row">
+  </div>
+
+     <div class="row">
     <div class="col-sm-1">
-            <label id="column"><font size="5">1</font></label>
+      <label id="column"><font size="5">1</font></label>
     </div>
     <div class="col-sm-1">
       <div class="panel panel-default" id="A1" ng-click="park('A1')">
         <div class="panel-body Panel-class">
-          <label class="align">B</label>
+ <label class="align">B</label>
           <div class="row">
             <!--<div class="col-sm-8">
               P0002
@@ -424,7 +401,7 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class="panel panel-default" id="B1" ng-click="park('B1')">
         <div class="panel-body Panel-class">
-              <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
@@ -433,21 +410,21 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class="panel panel-default" id="C1" ng-click="park('C1')">
         <div class="panel-body Panel-class">
-             <label class="align">C</label>
+ <label class="align">C</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="D1" ng-click="park('D1')">
         <div class="panel-body Panel-class">
-              <label class="align">C</label>
+ <label class="align">C</label>
         </div>
       </div>
     </div>
         <div class="col-sm-1">
       <div class=" panel panel-default" id="E1" ng-click="park('E1')">
         <div class="panel-body Panel-class">
-                <label class="align">C</label>
+ <label class="align">C</label>
         </div>
       </div>
     </div>
@@ -456,35 +433,36 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class=" panel panel-default" id="F1" ng-click="park('F1')">
         <div class="panel-body Panel-class">
-                <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="G1" ng-click="park('G1')">
         <div class="panel-body Panel-class">
-                  <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="H1" ng-click="park('H1')">
         <div class="panel-body Panel-class">
-                <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
     </div>
+
   </div>
-  <div class="row">
+       <div class="row">
     <div class="col-sm-1">
-            <label id="column"><font size="5">2</font></label>
+      <label id="column"><font size="5">2</font></label>
     </div>
     <div class="col-sm-1">
       <div class="panel panel-default" id="A2" ng-click="park('A2')">
         <div class="panel-body Panel-class">
-            <label class="align">B</label>
+ <label class="align">B</label>
           <div class="row">
             <!--<div class="col-sm-8">
               P0002
@@ -499,7 +477,7 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class="panel panel-default" id="B2" ng-click="park('B2')">
         <div class="panel-body Panel-class">
-              <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
@@ -508,21 +486,21 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class="panel panel-default" id="C2" ng-click="park('C2')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="D2" ng-click="park('D2')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
         <div class="col-sm-1">
       <div class=" panel panel-default" id="E2" ng-click="park('E2')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
@@ -531,21 +509,21 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class=" panel panel-default" id="F2" ng-click="park('F2')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="G2" ng-click="park('G2')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default reserved1 " id="H2" >
         <div class="panel-body Panel-class">
-       <label class="reserved">R</label>
+ <label class="reserved">R</label>
         </div>
       </div>
     </div>
@@ -554,14 +532,14 @@ app.service("slot_status_update", function($http){
 
   </div>
 
-  <div class="row">
+     <div class="row">
     <div class="col-sm-1">
-            <label id="column"><font size="5">3</font></label>
+      <label id="column"><font size="5">3</font></label>
     </div>
     <div class="col-sm-1">
       <div class="panel panel-default reserved1" id="A3" >
         <div class="panel-body Panel-class">
-       <label class="reserved">R</label>
+ <label class="reserved">R</label>
           <div class="row">
             <!--<div class="col-sm-8">
               P0002
@@ -576,7 +554,7 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class="panel panel-default reserved1 " id="B3" >
         <div class="panel-body Panel-class">
-       <label class="reserved">R</label>
+ <label class="reserved">R</label>
         </div>
       </div>
     </div>
@@ -585,21 +563,21 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class="panel panel-default reserved1" id="C3" >
         <div class="panel-body Panel-class">
-       <label class="reserved">R</label>
+ <label class="reserved">R</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="D3" ng-click="park('D3')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
         <div class="col-sm-1">
       <div class=" panel panel-default" id="E3" ng-click="park('E3')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
@@ -608,21 +586,21 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class=" panel panel-default" id="F3" ng-click="park('F3')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="G3" ng-click="park('G3')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="H3" ng-click="park('H3')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
@@ -630,14 +608,14 @@ app.service("slot_status_update", function($http){
     </div>
 
   </div>
-  <div class="row">
+     <div class="row">
     <div class="col-sm-1">
-            <label id="column"><font size="5">4</font></label>
+      <label id="column"><font size="5">4</font></label>
     </div>
     <div class="col-sm-1">
       <div class="panel panel-default" id="A4" ng-click="park('A4')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
           <div class="row">
             <!--<div class="col-sm-8">
               P0002
@@ -652,7 +630,7 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class="panel panel-default" id="B4" ng-click="park('B4')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
@@ -661,21 +639,21 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class="panel panel-default" id="C4" ng-click="park('C4')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="D4" ng-click="park('D4')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
         <div class="col-sm-1">
       <div class=" panel panel-default" id="E4" ng-click="park('E4')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
@@ -684,21 +662,21 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class=" panel panel-default" id="F4" ng-click="park('F4')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="G4" ng-click="park('G4')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="H4" ng-click="park('H4')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
@@ -706,14 +684,14 @@ app.service("slot_status_update", function($http){
     </div>
 
   </div>
-  <div class="row">
+     <div class="row">
     <div class="col-sm-1">
-            <label id="column"><font size="5">5</font></label>
+      <label id="column"><font size="5">5</font></label>
     </div>
     <div class="col-sm-1">
       <div class="panel panel-default" id="A5" ng-click="park('A5')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
           <div class="row">
             <!--<div class="col-sm-8">
               P0002
@@ -728,7 +706,7 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class="panel panel-default" id="B5" ng-click="park('B5')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
@@ -737,21 +715,21 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class="panel panel-default" id="C5" ng-click="park('C5')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="D5" ng-click="park('D5')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
         <div class="col-sm-1">
       <div class=" panel panel-default" id="E5" ng-click="park('E5')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
@@ -760,32 +738,30 @@ app.service("slot_status_update", function($http){
     <div class="col-sm-1">
       <div class=" panel panel-default" id="F5" ng-click="park('F5')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="G5" ng-click="park('G5')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
       <div class=" panel panel-default" id="H5" ng-click="park('H5')">
         <div class="panel-body Panel-class">
-       <label class="align">B</label>
+ <label class="align">B</label>
         </div>
       </div>
     </div>
     <div class="col-sm-1">
     </div>
+
   </div>   
   </div>
   </div>
-  <div class="row" style="margin-left: 78%; animation-delay: 0.9s; animation-iteration-count: infinite;animation-duration: 10s; ">
-   <img src="images/lorry.png" class=" animated slideInLeft" width="130px">
-   <img src="images/lorry.png" class="animated slideInLeft" width="130px"> 
-</div>
+
 </body>
 </html>

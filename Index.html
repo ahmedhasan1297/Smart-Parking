@@ -62,9 +62,35 @@
      }*/
     </style>   
     <script type="text/javascript">
-        //var app=angular.module("manage",[]);
-        //app.controller("index_control",function($scope){
-        //});
+        (function(){
+            var c=document.cookie;
+            var mytest1=c.split(';');
+//            alert(c);
+            console.log(document.cookie);
+            var check=document.cookie;
+            var i=mytest1[1].search("=");
+            i=i+3;
+            if(mytest1[1].charAt(i)=="A")
+            {
+              //alert(c);
+              window.location.assign("admin1.html");
+            }
+            else if(mytest1[1].charAt(i)=="4")
+            {
+//              alert(check);
+//              alert(mytest1[0]);
+              //var end=mytest1[1].charAt()
+//              alert(start);
+//              alert(end);
+//              alert(emp_id);
+                window.location.assign("admin2.html");
+            }
+
+            else
+            {
+            }
+     }());   
+
     </script>
     </head>
 
@@ -88,8 +114,8 @@
                         <nav role="navigation" class="okayNav pull-right" id="js-navbar-menu">
                             <ul id="navbar-nav" class="navbar-nav">
                                
-                                <li><a class="btn-nav hvr-underline-reveal" href="#" data-toggle="modal" data-target="#sign-up-form">Sign Up</a></li>
                                 <li><a class="btn-nav hvr-underline-reveal" href="#" data-toggle="modal" data-target="#login-form">Login</a></li>
+                                <li><a class="btn-nav hvr-underline-reveal" href="#" data-toggle="modal" data-target="#admin-login-form">Admin Login</a></li>
                             </ul>
                         </nav>
 
@@ -122,23 +148,31 @@
 
                         <div class="col-xs-12">
                             <!-- First Name -->
-                            <input name="text" class="contact-first-name form-control" type="text" placeholder="First Name*" required>
+                            <input name="fname" class="contact-first-name form-control" type="text" placeholder="Full Name*" required>
                         </div>
                         <div class="col-xs-12">
-                            <!-- Last Name -->
-                            <input name="text" class="contact-last-name form-control" type="text" placeholder="Last Name*" required>
+                            <!-- Employee ID -->
+                            <input name="empid" class="contact-empid form-control" type="text" placeholder="Employee ID*" required>
                         </div>
                         <div class="col-xs-12">
                             <!-- Email -->
-                            <input name="email" class="contact-email form-control" type="email" placeholder="Email*" required>
+                            <input name="email" class="contact-email form-control" type="text" placeholder="Email*" required>
                         </div>
                         <div class="col-xs-12">
                             <!-- Subject -->
-                            <input name="password" class="contact-password form-control" type="pass" placeholder="Password">
+                            <input name="password" class="contact-password form-control" type="password" placeholder="Password*">
+                        </div>
+                        <div class="col-xs-12">
+                            <!-- Gender -->
+                            <input name="gender" class="contact-gender form-control" type="text" placeholder="Gender*" required>
+                        </div>
+                        <div class="col-xs-12">
+                            <!-- Email -->
+                            <input name="vehicle_no" class="contact-vehicle-no form-control" type="text" placeholder="vehicle_no*" required>
                         </div>
                         <div class="col-xs-12">
                             <!-- Subject -->
-                            <input name="password" class="contact-cmp-password form-control" type="pass" placeholder="Confirm Password">
+                            <input name="phnno" class="contact-phnno form-control" type="text" placeholder="Phone No*">
                         </div>
                         <div class="col-xs-12">
                             <div class="checkbox">
@@ -159,6 +193,50 @@
         <!-- End: Sign Out Form
         ================================== -->
 
+
+ <!-- Start: Sign Out Form
+        ================================== -->
+        <div id="admin-login-form" class="sign-form modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content p-t-30 p-b-30">
+                    
+                    <!-- Modal Close Button -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                    <form method="post" class="single-form" action="concheck.php">
+
+                        <div class="col-xs-12 text-center">
+                            <h2 class="section-heading p-b-30">Admin Login</h2>
+                        </div>
+
+                        <div class="col-xs-12">
+                            <!-- Subject -->
+                            <input name="text" class="contact-password form-control" type="username" placeholder="username">
+                        </div>
+                        <div class="col-xs-12">
+                            <!-- Subject -->
+                            <input name="password" class="contact-cmp-password form-control" type="password" placeholder=" Password">
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="checkbox">
+                                <input type="checkbox" id="agreement">
+<!--                                <label for="agreement">I agree to Your Terms of Service </label>-->
+                            </div>
+                        </div>
+                        
+                        <!-- Subject Button -->
+                        <div class="btn-form text-center col-xs-12">
+                            <button class="btn btn-fill">Login</button>
+                        </div>
+                    </form>
+
+                </div><!-- End: .modal-content -->
+            </div><!-- End: .modal-dialog -->
+        </div><!-- End: .modal -->
+        <!-- End: login Form
+        ================================== -->
 
  <!-- Start: Sign Out Form
         ================================== -->
@@ -183,7 +261,7 @@
                         </div>
                         <div class="col-xs-12">
                             <!-- Subject -->
-                            <input name="password" class="contact-cmp-password form-control" type="pass" placeholder=" Password">
+                            <input name="password" class="contact-cmp-password form-control" type="password" placeholder=" Password">
                         </div>
                         <div class="col-xs-12">
                             <div class="checkbox">
@@ -226,7 +304,7 @@
 
                                 <!-- Button Area -->
                                 <div class="btn-form btn-scroll animated fadeIn">
-                                    <a href="#" class="btn btn-border hvr-sweep-to-right " href="#" data-toggle="modal" data-target="#login-form">Get started</a>
+                                    <a href="#" class="btn btn-border hvr-sweep-to-right " href="#" data-toggle="modal" data-target="#sign-up-form">Get started to Sign up</a>
                                 </div>
 
                             </div>
