@@ -75,7 +75,6 @@
   .panel-default {
     /* height: 30px; */
     display: flex;
-    background-color: lightgreen;
     width: 25px;
   }
    .main-row
@@ -159,6 +158,7 @@
     app.controller("dashboard_con",function($scope,park_update,slotpark_update,slot_status_update){
       $scope.slot_no="";
       $scope.slot_details="";
+      $scope.c_vehicle_no="AP12WR1234";
       $scope.park=function(slot_no_2){
 //        alert(slot_no_2);
 //        alert(emp_id);
