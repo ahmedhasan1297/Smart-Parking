@@ -972,7 +972,6 @@ h6 {
   .panel-default {
       height: 30px;
       display: flex;      
-      background-color: lightgreen;
     }
     .row
     {

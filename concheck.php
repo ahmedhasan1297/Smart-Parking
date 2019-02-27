@@ -39,7 +39,7 @@ if($conn->connect_error)
    else
    {
     echo "<script>alert('giving login again');</script>";
-        //header("Location:index.html");
+        header("Location:index.html");
    }
  }
    mysqli_close($conn);
