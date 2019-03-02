@@ -1,7 +1,7 @@
 <?php
 $servername="localhost";
 $user="root";
-$pass="";
+$pass="root";
 $db="smartparking";
 $conn=new mysqli($servername,$user,$pass,$db);
 if($conn->connect_error)

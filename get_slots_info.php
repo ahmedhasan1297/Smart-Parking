@@ -1,7 +1,7 @@
 <?php
     //$group_name=$_POST['gname'];
 	$data1=array();
-	$conn = new mysqli('localhost', 'root', '', 'smartparking'); 
+	$conn = new mysqli('localhost', 'root', 'root', 'smartparking'); 
 	if ($conn->connect_error) 
 	{
 	    die("Connection failed: " . $conn->connect_error);
