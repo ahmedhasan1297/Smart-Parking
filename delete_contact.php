@@ -1,7 +1,7 @@
 <?php
 	$empid=$_POST['c_emp_id'];
 	//creating a connection to database
-	$conn=new mysqli("localhost","root","","smartparking");
+	$conn=new mysqli("localhost","root","root","smartparking");
 	//check connection
 	if($conn->connect_error)
 	{

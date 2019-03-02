@@ -3,7 +3,7 @@
 	$slot=$_POST['slot'];
 	$status=$_POST['status'];
 	$data1=array();
-	$conn = new mysqli('localhost', 'root', '', 'smartparking'); 
+	$conn = new mysqli('localhost', 'root', 'root', 'smartparking'); 
 	if ($conn->connect_error) 
 	{
 	    die("Connection failed: " . $conn->connect_error);
